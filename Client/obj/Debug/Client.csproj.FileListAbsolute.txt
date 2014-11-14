@@ -1,0 +1,56 @@
+c:\users\aaron\documents\visual studio 2012\Projects\ConsoleApplication1\Client\bin\Debug\Client.exe.config
+c:\users\aaron\documents\visual studio 2012\Projects\ConsoleApplication1\Client\bin\Debug\Client.exe
+c:\users\aaron\documents\visual studio 2012\Projects\ConsoleApplication1\Client\bin\Debug\Client.pdb
+c:\users\aaron\documents\visual studio 2012\Projects\ConsoleApplication1\Client\obj\Debug\Client.exe
+c:\users\aaron\documents\visual studio 2012\Projects\ConsoleApplication1\Client\obj\Debug\Client.pdb
+c:\users\aaron\documents\visual studio 2012\Projects\ConsoleApplication1\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+D:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Client.exe.config
+D:\BaiduYunDownload\ConsoleApplication1\Client\obj\Debug\Client.exe
+D:\BaiduYunDownload\ConsoleApplication1\Client\obj\Debug\Client.pdb
+D:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Client.exe
+D:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Client.pdb
+D:\BaiduYunDownload\ConsoleApplication1\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+D:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\CLFramework.dll
+D:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Core.dll
+D:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\log4net.dll
+D:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Newtonsoft.Json.dll
+D:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\protobuf-net.dll
+D:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Core.pdb
+E:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Client.exe.config
+E:\BaiduYunDownload\ConsoleApplication1\Client\obj\Debug\Client.exe
+E:\BaiduYunDownload\ConsoleApplication1\Client\obj\Debug\Client.pdb
+E:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Client.exe
+E:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Client.pdb
+E:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\CLFramework.dll
+E:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Core.dll
+E:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\log4net.dll
+E:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Newtonsoft.Json.dll
+E:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\protobuf-net.dll
+E:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\Core.pdb
+E:\BaiduYunDownload\ConsoleApplication1\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+E:\BaiduYunDownload\ConsoleApplication1\Client\bin\Debug\run.cmd
+D:\BaiduYunDownload\SocketServer\Client\bin\Debug\Client.exe.config
+D:\BaiduYunDownload\SocketServer\Client\obj\Debug\Client.exe
+D:\BaiduYunDownload\SocketServer\Client\obj\Debug\Client.pdb
+D:\BaiduYunDownload\SocketServer\Client\bin\Debug\run.cmd
+D:\BaiduYunDownload\SocketServer\Client\bin\Debug\Client.exe
+D:\BaiduYunDownload\SocketServer\Client\bin\Debug\Client.pdb
+D:\BaiduYunDownload\SocketServer\Client\bin\Debug\CLFramework.dll
+D:\BaiduYunDownload\SocketServer\Client\bin\Debug\Core.dll
+D:\BaiduYunDownload\SocketServer\Client\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\BaiduYunDownload\SocketServer\Client\bin\Debug\log4net.dll
+D:\BaiduYunDownload\SocketServer\Client\bin\Debug\Newtonsoft.Json.dll
+D:\BaiduYunDownload\SocketServer\Client\bin\Debug\protobuf-net.dll
+D:\BaiduYunDownload\SocketServer\Client\bin\Debug\Core.pdb
+D:\BaiduYunDownload\SocketServer\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\sword\Client\bin\Debug\Client.exe.config
+C:\Users\Administrator\Documents\GitHub\sword\Client\obj\Debug\Client.exe
+C:\Users\Administrator\Documents\GitHub\sword\Client\obj\Debug\Client.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Client\bin\Debug\run.cmd
+C:\Users\Administrator\Documents\GitHub\sword\Client\bin\Debug\Client.exe
+C:\Users\Administrator\Documents\GitHub\sword\Client\bin\Debug\Client.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Client\bin\Debug\Core.dll
+C:\Users\Administrator\Documents\GitHub\sword\Client\bin\Debug\Core.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
