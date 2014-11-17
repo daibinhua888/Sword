@@ -54,3 +54,16 @@ C:\Users\Administrator\Documents\GitHub\sword\Client\bin\Debug\Client.pdb
 C:\Users\Administrator\Documents\GitHub\sword\Client\bin\Debug\Core.dll
 C:\Users\Administrator\Documents\GitHub\sword\Client\bin\Debug\Core.pdb
 C:\Users\Administrator\Documents\GitHub\sword\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\bin\Debug\Client.exe.config
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\obj\Debug\Client.exe
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\obj\Debug\Client.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\bin\Debug\Client.exe
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\bin\Debug\Client.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\bin\Debug\Core.dll
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\bin\Debug\ServiceImpls.dll
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\bin\Debug\Core.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\bin\Debug\ServiceImpls.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\bin\Debug\run_1.cmd
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\bin\Debug\run_200.cmd
+C:\Users\Administrator\Documents\GitHub\sword\Code\Client\bin\Debug\run_5.cmd

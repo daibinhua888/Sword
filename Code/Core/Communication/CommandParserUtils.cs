@@ -1,11 +1,12 @@
-﻿using Core.Utils;
+﻿using Core.CommandBus;
+using Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core
+namespace Core.Communication
 {
     internal static class CommandParserUtils
     {
@@ -17,11 +18,11 @@ namespace Core
             return cmdBytes.Skip(cmdSize + tag4ContentSize).ToArray();
         }
 
-        public static CommandWrapper ParseCommand(byte[] cmdBytes)
+        public static T ParseCommand<T>(byte[] cmdBytes)
         {
             var cmdSize = GetFirstCommandSize(cmdBytes);
             var bts = cmdBytes.Skip(tag4ContentSize).Take(cmdSize).ToArray();
-            return SerializerUtility.BinDeserialize<CommandWrapper>(bts);
+            return SerializerUtility.BinDeserialize<T>(bts);
         }
 
         public static bool IsSizeOKForOneCommand(byte[] cmdBytes)

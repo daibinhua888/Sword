@@ -51,3 +51,11 @@ C:\Users\Administrator\Documents\GitHub\sword\Server\bin\Debug\Core.pdb
 C:\Users\Administrator\Documents\GitHub\sword\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\sword\Server\obj\Debug\ConsoleApplication1.exe
 C:\Users\Administrator\Documents\GitHub\sword\Server\obj\Debug\ConsoleApplication1.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\ConsoleApplication1.exe
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\Core.dll
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\Core.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\obj\Debug\ConsoleApplication1.exe
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\obj\Debug\ConsoleApplication1.pdb

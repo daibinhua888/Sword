@@ -39,14 +39,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandParser.cs" />
-    <Compile Include="CommandParserUtils.cs" />
-    <Compile Include="CommandWrapper.cs" />
-    <Compile Include="ConnectionManager.cs" />
-    <Compile Include="ConnectionObject.cs" />
+    <Compile Include="Clients\Sword.cs" />
+    <Compile Include="CommandBus\CommandBusClient.cs" />
+    <Compile Include="CommandBus\CommandBusFactory.cs" />
+    <Compile Include="CommandBus\CommandResult.cs" />
+    <Compile Include="Communication\ClientConnectionManager.cs" />
+    <Compile Include="Communication\CommandParser.cs" />
+    <Compile Include="Communication\CommandParserUtils.cs" />
+    <Compile Include="CommandBus\Command.cs" />
+    <Compile Include="Communication\ConnectionManager.cs" />
+    <Compile Include="Communication\ConnectionObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerAcceptor.cs" />
+    <Compile Include="Communication\ServerAcceptor.cs" />
+    <Compile Include="SwordServiceAttribute.cs" />
     <Compile Include="Utils\SerializerUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EmitCommandBus\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

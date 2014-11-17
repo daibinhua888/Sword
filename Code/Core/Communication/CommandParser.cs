@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Core.CommandBus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core
+namespace Core.Communication
 {
-    public class CommandParser
+    public class CommandParser<T>
     {
         private byte[] cmdBytes=new byte[0];
         private object cmdBytesLock = new object();
@@ -24,21 +25,21 @@ namespace Core
             }
         }
 
-        public List<CommandWrapper> GetCommandWrappers()
+        public List<T> GetDTOs()
         {
             lock (cmdBytesLock)
             {
                 if (this.cmdBytes.Length <= CommandParserUtils.tag4ContentSize)
                     return null;
 
-                List<CommandWrapper> cmds = new List<CommandWrapper>();
+                List<T> cmds = new List<T>();
 
                 while (true)
                 {
                     if (!CommandParserUtils.IsSizeOKForOneCommand(this.cmdBytes))
                         break;
 
-                    CommandWrapper cmd = CommandParserUtils.ParseCommand(this.cmdBytes);
+                    T cmd = CommandParserUtils.ParseCommand<T>(this.cmdBytes);
                     cmds.Add(cmd);
 
                     this.cmdBytes = CommandParserUtils.TruncateBuffer(this.cmdBytes);

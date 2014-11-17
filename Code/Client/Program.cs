@@ -1,4 +1,8 @@
-﻿using Core.Utils;
+﻿using Core.Clients;
+using Core.CommandBus;
+using Core.Communication;
+using Core.Utils;
+using ServiceImpls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,45 +18,39 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            socket.Connect("localhost", 888);
+            CommandBusClient cmdBus = CommandBusFactory.GetCommandBus();
 
-            Console.Title = "Client1 " + socket.LocalEndPoint.ToString();
+            cmdBus.Start();
+
+            Console.Title = "Client1 " + cmdBus.LocalEndPoint.ToString();
 
             for (var i = 0; i < 5000; i++)
             {
-                MemoryStream ms = new MemoryStream();
-                BufferedStream bs = new BufferedStream(ms);
-                BinaryWriter bw = new BinaryWriter(bs, UnicodeEncoding.UTF8);
-
-                Core.CommandWrapper cmd = new Core.CommandWrapper();
+                Command cmd = new Command();
                 cmd.SessionID = Console.Title;
-                cmd.Command = "UPDATE";
-                cmd.Tag = DateTime.Now.ToString();
-                var cmdBytes = SerializerUtility.BinSerialize(cmd);
-                bw.Write(cmdBytes.Length);
-                bw.Write(cmdBytes);
+                cmd.AppID = "testing";
+                cmd.CallContract = "ssssssss";
 
-                bw.Flush();
-
-                socket.Send(ms.ToArray());
+                cmdBus.Send(cmd);
+                
                 Console.WriteLine("Sent");
 
-                byte[] buffer=new byte[1024*16];
-                
-                int len = socket.Receive(buffer);
-                var response=UTF8Encoding.UTF8.GetString(buffer, 0, len);
+                CommandResult cmdResult = cmdBus.WaitForResult();
 
-                Console.WriteLine("[{0}] {1}", socket.RemoteEndPoint.ToString(), response);
+                Console.WriteLine("[{0}] {1}", cmdBus.RemoteEndPoint.ToString(), Core.Utils.SerializerUtility.BinDeserialize<string>(cmdResult.Result));
 
                 Thread.Sleep(500);
             }
 
-            socket.Shutdown(SocketShutdown.Send);
-            socket.Close();
+            cmdBus.Stop();
 
             Console.WriteLine("done");
             Console.ReadKey();
+
+
+            using (var proxy = new Sword<TestService>())
+            {
+            }
         }
     }
 }
