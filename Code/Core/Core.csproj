@@ -44,14 +44,15 @@
     <Compile Include="CommandBus\CommandBusFactory.cs" />
     <Compile Include="CommandBus\CommandResult.cs" />
     <Compile Include="Communication\ClientConnectionManager.cs" />
-    <Compile Include="Communication\CommandParser.cs" />
-    <Compile Include="Communication\CommandParserUtils.cs" />
+    <Compile Include="Communication\StickPackageDeal\CommandParser.cs" />
+    <Compile Include="Communication\StickPackageDeal\CommandParserUtils.cs" />
     <Compile Include="CommandBus\Command.cs" />
-    <Compile Include="Communication\ConnectionManager.cs" />
-    <Compile Include="Communication\ConnectionObject.cs" />
+    <Compile Include="Communication\ConnectionMaster.cs" />
+    <Compile Include="Communication\ConnectionWorker.cs" />
+    <Compile Include="Communication\QueueDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Communication\ServerAcceptor.cs" />
-    <Compile Include="SwordServiceAttribute.cs" />
+    <Compile Include="Communication\ConnectionAcceptor.cs" />
+    <Compile Include="Clients\SwordServiceAttribute.cs" />
     <Compile Include="Utils\SerializerUtility.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,3 +5,10 @@ C:\Users\Administrator\Documents\GitHub\sword\Code\ServiceImpls\bin\Debug\Core.p
 C:\Users\Administrator\Documents\GitHub\sword\Code\ServiceImpls\obj\Debug\ServiceImpls.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\sword\Code\ServiceImpls\obj\Debug\ServiceImpls.dll
 C:\Users\Administrator\Documents\GitHub\sword\Code\ServiceImpls\obj\Debug\ServiceImpls.pdb
+C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\bin\Debug\ServiceImpls.dll
+C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\bin\Debug\ServiceImpls.pdb
+C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\bin\Debug\Core.dll
+C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\bin\Debug\Core.pdb
+C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\obj\Debug\ServiceImpls.csprojResolveAssemblyReference.cache
+C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\obj\Debug\ServiceImpls.dll
+C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\obj\Debug\ServiceImpls.pdb

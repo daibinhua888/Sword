@@ -13,7 +13,7 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        private static ServerAcceptor serverAcceptor;
+        private static ConnectionAcceptor serverAcceptor;
 
         static void Main(string[] args)
         {
@@ -26,7 +26,7 @@ namespace ConsoleApplication1
             serverSocket.Bind(listenAddress);
             serverSocket.Listen(5);
 
-            serverAcceptor = new ServerAcceptor(serverSocket);
+            serverAcceptor = new ConnectionAcceptor(serverSocket);
             serverAcceptor.Start();
 
             Console.WriteLine("Server started.");

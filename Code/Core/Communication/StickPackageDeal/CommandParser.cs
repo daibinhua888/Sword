@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Communication
+namespace Core.Communication.StickPackageDeal
 {
     public class CommandParser<T>
     {

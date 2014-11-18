@@ -1,4 +1,5 @@
 ﻿using Core.CommandBus;
+using Core.Communication.StickPackageDeal;
 using Core.Utils;
 using System;
 using System.Collections.Generic;
@@ -6,13 +7,14 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Core.Communication
 {
-    public class ConnectionObject
+    public class ConnectionWorker
     {
-        public ConnectionObject(Socket socket)
+        public ConnectionWorker(Socket socket)
         {
             this.Socket = socket;
 
@@ -26,16 +28,15 @@ namespace Core.Communication
 
             this.saea_receive.Completed += SocketAsyncEventArgs_Completed;
 
-            this.saea_send = new SocketAsyncEventArgs();
-            this.saea_send.Completed += saea_send_Completed;
+            this.responseDispatcher = new QueueDispatcher(socket);
         }
 
         private byte[] receiveBuffer;
         public Socket Socket { get; set; }
         public SocketAsyncEventArgs saea_receive { get; set; }
-        public SocketAsyncEventArgs saea_send { get; set; }
         public DateTime LastActiveTime { get; set; }
         private CommandParser<Command> parser;
+        private QueueDispatcher responseDispatcher;
 
         public void StartReceive()
         {
@@ -83,32 +84,13 @@ namespace Core.Communication
                 {
                     Console.WriteLine("[{0}] New Command: " + cmd.AppID+", "+cmd.CallContract, cmd.SessionID);
 
-                    MemoryStream ms = new MemoryStream();
-                    BufferedStream bs = new BufferedStream(ms);
-                    BinaryWriter bw = new BinaryWriter(bs, UnicodeEncoding.UTF8);
+                    CommandResult result = new CommandResult();
 
-                    CommandResult cmdResult = new CommandResult();
+                    result.Result = Utils.SerializerUtility.BinSerialize("Server: " + DateTime.Now.ToString());
 
-                    cmdResult.Result = Utils.SerializerUtility.BinSerialize("Server: " + DateTime.Now.ToString());
-
-                    var cmdBytes = SerializerUtility.BinSerialize(cmdResult);
-                    bw.Write(cmdBytes.Length);
-                    bw.Write(cmdBytes);
-
-                    bw.Flush();
-
-                    byte[] sendBuffer = ms.ToArray();
-                    saea_send.SetBuffer(sendBuffer, 0, sendBuffer.Length);
-
-                    this.Socket.SendAsync(saea_send);
+                    this.responseDispatcher.Dispatch(result);
                 });
             }
-        }
-
-
-        private void saea_send_Completed(object sender, SocketAsyncEventArgs e)
-        {
-            //Nothing to do
         }
     }
 }

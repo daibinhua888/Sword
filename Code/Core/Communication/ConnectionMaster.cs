@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Core.Communication
 {
-    public class ConnectionManager
+    public class ConnectionMaster
     {
-        public static List<ConnectionObject> ConnectionObjects = new List<ConnectionObject>();
+        public static List<ConnectionWorker> ConnectionObjects = new List<ConnectionWorker>();
     }
 }

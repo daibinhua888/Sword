@@ -24,7 +24,7 @@ namespace Client
 
             Console.Title = "Client1 " + cmdBus.LocalEndPoint.ToString();
 
-            for (var i = 0; i < 5000; i++)
+            for (var i = 0; i < 50000; i++)
             {
                 Command cmd = new Command();
                 cmd.SessionID = Console.Title;
@@ -32,14 +32,12 @@ namespace Client
                 cmd.CallContract = "ssssssss";
 
                 cmdBus.Send(cmd);
-                
+
                 Console.WriteLine("Sent");
 
                 CommandResult cmdResult = cmdBus.WaitForResult();
 
-                Console.WriteLine("[{0}] {1}", cmdBus.RemoteEndPoint.ToString(), Core.Utils.SerializerUtility.BinDeserialize<string>(cmdResult.Result));
-
-                Thread.Sleep(500);
+                Console.WriteLine("{2}-->[{0}] {1}", cmdBus.RemoteEndPoint.ToString(), Core.Utils.SerializerUtility.BinDeserialize<string>(cmdResult.Result), i);
             }
 
             cmdBus.Stop();

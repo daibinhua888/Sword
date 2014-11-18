@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Core.Communication
 {
-    public class ServerAcceptor
+    public class ConnectionAcceptor
     {
         public SocketAsyncEventArgs SocketAsyncEventArgs { get; set; }
         private Socket serverSocket { get; set; }
 
-        public ServerAcceptor(Socket socket)
+        public ConnectionAcceptor(Socket socket)
         {
             this.serverSocket = socket;
 
@@ -52,10 +52,10 @@ namespace Core.Communication
 
         private void ProcessAccept(Socket acceptSocket)
         {
-            var cObj = new ConnectionObject(acceptSocket);
+            var cObj = new ConnectionWorker(acceptSocket);
             cObj.LastActiveTime = DateTime.Now;
 
-            ConnectionManager.ConnectionObjects.Add(cObj);
+            ConnectionMaster.ConnectionObjects.Add(cObj);
 
             Console.WriteLine("New client[{0}] connected.", acceptSocket.RemoteEndPoint.ToString());
 

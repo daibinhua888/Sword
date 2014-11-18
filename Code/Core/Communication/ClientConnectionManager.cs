@@ -1,4 +1,5 @@
 ﻿using Core.CommandBus;
+using Core.Communication.StickPackageDeal;
 using Core.Utils;
 using System;
 using System.Collections.Generic;
