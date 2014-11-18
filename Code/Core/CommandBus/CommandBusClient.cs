@@ -13,9 +13,12 @@ namespace Core.CommandBus
     public class CommandBusClient
     {
         private ClientConnectionManager mgr;
+        private string SessionID { get; set; }
 
         public void Start()
         {
+            this.SessionID = Guid.NewGuid().ToString();
+
             if (mgr == null)
                 mgr = new ClientConnectionManager();
 
@@ -35,6 +38,7 @@ namespace Core.CommandBus
             //validate first, ignored
 
             //send command
+            cmd.SessionID = this.SessionID;
             mgr.Send(cmd);
         }
 

@@ -82,11 +82,11 @@ namespace Core.Communication
             {
                 cmds.ForEach(cmd =>
                 {
-                    Console.WriteLine("[{0}] New Command: " + cmd.AppID+", "+cmd.CallContract, cmd.SessionID);
+                    Console.WriteLine("[{0}] New Command: " + cmd.Method2Invoke+", "+cmd.CallContract, cmd.SessionID);
 
                     CommandResult result = new CommandResult();
 
-                    result.Result = Utils.SerializerUtility.BinSerialize("Server: " + DateTime.Now.ToString());
+                    result.Result = SerializerUtility.Instance().BinSerialize("Server: " + DateTime.Now.ToString());
 
                     this.responseDispatcher.Dispatch(result);
                 });

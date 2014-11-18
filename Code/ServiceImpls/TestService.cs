@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace ServiceImpls
 {
     [SwordService]
-    public class TestService
+    public class TestService : ITest
     {
-        public string Test1()
+        public string Test1(string input)
         {
             return DateTime.Now.ToString();
         }

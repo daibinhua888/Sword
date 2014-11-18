@@ -10,7 +10,16 @@ namespace Core.Utils
 {
     public class SerializerUtility
     {
-        public static T BinDeserialize<T>(byte[] b)
+        private static SerializerUtility _utility;
+        public static SerializerUtility Instance()
+        {
+            if (_utility == null)
+                _utility = new SerializerUtility();
+
+            return _utility;
+        }
+
+        public T BinDeserialize<T>(byte[] b)
         {
             if (b == null)
             {
@@ -25,7 +34,7 @@ namespace Core.Utils
             }
         }
 
-        public static T BinDeserializeFromFile<T>(string path)
+        public T BinDeserializeFromFile<T>(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
@@ -34,7 +43,7 @@ namespace Core.Utils
             return BinDeserialize<T>(File.ReadAllBytes(path));
         }
 
-        public static byte[] BinSerialize(object obj)
+        public byte[] BinSerialize(object obj)
         {
             if (obj == null)
             {
@@ -48,7 +57,7 @@ namespace Core.Utils
             }
         }
 
-        public static void BinSerializeToFile(object o, string path)
+        public void BinSerializeToFile(object o, string path)
         {
             if (o == null)
             {

@@ -36,7 +36,7 @@ namespace Core.Communication
             BinaryWriter bw = new BinaryWriter(bs, UnicodeEncoding.UTF8);
 
 
-            var cmdBytes = SerializerUtility.BinSerialize(cmd);
+            var cmdBytes = SerializerUtility.Instance().BinSerialize(cmd);
             bw.Write(cmdBytes.Length);
             bw.Write(cmdBytes);
 

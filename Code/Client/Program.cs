@@ -24,31 +24,32 @@ namespace Client
 
             Console.Title = "Client1 " + cmdBus.LocalEndPoint.ToString();
 
-            for (var i = 0; i < 50000; i++)
+            using (var proxy = new Sword<ITest>())
             {
-                Command cmd = new Command();
-                cmd.SessionID = Console.Title;
-                cmd.AppID = "testing";
-                cmd.CallContract = "ssssssss";
+                for (var i = 0; i < 500; i++)
+                {
+                    var result = proxy.Proxy.Test1("fff");
 
-                cmdBus.Send(cmd);
-
-                Console.WriteLine("Sent");
-
-                CommandResult cmdResult = cmdBus.WaitForResult();
-
-                Console.WriteLine("{2}-->[{0}] {1}", cmdBus.RemoteEndPoint.ToString(), Core.Utils.SerializerUtility.BinDeserialize<string>(cmdResult.Result), i);
+                    Console.WriteLine(i+"===="+result);
+                }
             }
+
+            using (var proxy = new Sword<ITest2>())
+            {
+                for (var i = 0; i < 500; i++)
+                {
+                    var result = proxy.Proxy.Test2("fff");
+
+                    Console.WriteLine(i + "====" + result);
+                }
+            }
+
 
             cmdBus.Stop();
 
             Console.WriteLine("done");
             Console.ReadKey();
 
-
-            using (var proxy = new Sword<TestService>())
-            {
-            }
         }
     }
 }

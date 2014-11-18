@@ -50,14 +50,13 @@
     <Compile Include="Communication\ConnectionMaster.cs" />
     <Compile Include="Communication\ConnectionWorker.cs" />
     <Compile Include="Communication\QueueDispatcher.cs" />
+    <Compile Include="EmitCommandBus\Commonization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Communication\ConnectionAcceptor.cs" />
     <Compile Include="Clients\SwordServiceAttribute.cs" />
     <Compile Include="Utils\SerializerUtility.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EmitCommandBus\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

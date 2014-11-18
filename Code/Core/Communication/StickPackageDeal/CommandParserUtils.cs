@@ -22,7 +22,7 @@ namespace Core.Communication.StickPackageDeal
         {
             var cmdSize = GetFirstCommandSize(cmdBytes);
             var bts = cmdBytes.Skip(tag4ContentSize).Take(cmdSize).ToArray();
-            return SerializerUtility.BinDeserialize<T>(bts);
+            return SerializerUtility.Instance().BinDeserialize<T>(bts);
         }
 
         public static bool IsSizeOKForOneCommand(byte[] cmdBytes)
