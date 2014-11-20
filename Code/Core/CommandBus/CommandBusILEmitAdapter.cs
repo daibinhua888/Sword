@@ -168,7 +168,7 @@ namespace Core.CommandBus
 
                 proxyType=typeBldr.CreateType();
 
-                asmBuilder.Save(proxyDllName);
+                //asmBuilder.Save(proxyDllName);
 
                 createdProxies[typeof(T)] = proxyType;
             }

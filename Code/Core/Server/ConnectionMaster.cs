@@ -13,8 +13,8 @@ namespace Core.Server
         private int listenPort;
         private int listenBackLog=5;
 
-        private List<ConnectionWorker> connectionObjects = new List<ConnectionWorker>();
-        private object lock_connectionObjects = new object();
+        internal List<ConnectionWorker> connectionObjects = new List<ConnectionWorker>();
+        internal object lock_connectionObjects = new object();
 
         private ConnectionAcceptor serverAcceptor;
 

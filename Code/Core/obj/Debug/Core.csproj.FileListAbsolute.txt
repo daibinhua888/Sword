@@ -32,3 +32,4 @@ C:\Users\Aaron\Documents\GitHub\sword\Code\Core\bin\Debug\Core.dll
 C:\Users\Aaron\Documents\GitHub\sword\Code\Core\bin\Debug\Core.pdb
 C:\Users\Aaron\Documents\GitHub\sword\Code\Core\obj\Debug\Core.dll
 C:\Users\Aaron\Documents\GitHub\sword\Code\Core\obj\Debug\Core.pdb
+C:\Users\Aaron\Documents\GitHub\sword\Code\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Core.Server
 {
-    public class ConnectionWorker
+    public class ConnectionWorker:IDisposable
     {
         public ConnectionWorker(Socket socket)
         {
@@ -34,6 +34,7 @@ namespace Core.Server
         public SocketAsyncEventArgs saea_receive { get; set; }
         public DateTime LastActiveTime { get; set; }
         private CommandParser<Command> parser;
+        public bool IsTagged { get; set; }
 
         public void StartReceive()
         {
@@ -52,7 +53,7 @@ namespace Core.Server
             {
                 if (e.SocketError != SocketError.Success)
                 {
-                    Console.WriteLine("Error!");
+                    Console.WriteLine("Error in ConnectionWorker!");
                     return;
                 }
 
@@ -65,7 +66,8 @@ namespace Core.Server
                 this.LastActiveTime = DateTime.Now;
                 ProcessReceive(e.Buffer, e.BytesTransferred);
 
-                StartReceive();
+                if(!this.IsTagged)
+                    StartReceive();
             }
         }
 
@@ -98,6 +100,28 @@ namespace Core.Server
             bw.Flush();
 
             this.Socket.Send(ms.ToArray());
+        }
+
+        public void Dispose()
+        {
+            if(this.Socket!=null)
+            {
+                TryCatchHelper.Do(() => { this.Socket.Shutdown(SocketShutdown.Both);});
+
+                TryCatchHelper.Do(() => { this.Socket.Close();});
+
+                TryCatchHelper.Do(() => { this.Socket.Dispose(); });
+
+                this.Socket = null;
+            }
+
+            this.receiveBuffer = null;
+
+            this.saea_receive = null;
+
+            parser = null;
+
+            Console.WriteLine("ConnectionWorker disposed");
         }
     }
 }

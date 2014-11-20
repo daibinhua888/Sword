@@ -42,7 +42,7 @@ namespace Core.Server
             {
                 if (e.SocketError != SocketError.Success)
                 {
-                    Console.WriteLine("Error!");
+                    Console.WriteLine("Error in ConnectionAcceptor!");
                     return;
                 }
 

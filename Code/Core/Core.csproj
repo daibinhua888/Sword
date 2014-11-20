@@ -48,6 +48,7 @@
     <Compile Include="Server\IncomingQueueRepository.cs" />
     <Compile Include="Server\IPipelineModule.cs" />
     <Compile Include="Server\Modules\SessionModule.cs" />
+    <Compile Include="Server\Cleaner\OfflineConnectionCleanWorker.cs" />
     <Compile Include="Server\Pipes\PipeProcessor.cs" />
     <Compile Include="Server\Pipes\PipeProcessorPool.cs" />
     <Compile Include="Server\ServerRuntime.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Clients\SwordServiceAttribute.cs" />
     <Compile Include="Server\OutgoingQueueRepository.cs" />
     <Compile Include="Utils\SerializerUtility.cs" />
+    <Compile Include="Utils\TryCatchHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Server\Selectors\" />

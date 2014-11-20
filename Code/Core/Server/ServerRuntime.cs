@@ -1,4 +1,5 @@
 ﻿using Core.CommandBus;
+using Core.Server.Cleaner;
 using Core.Utils;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,10 @@ namespace Core.Server
 {
     public static class ServerRuntime
     {
-        private static ConnectionMaster master;
+        internal static ConnectionMaster master;
         private static IncomingQueueRepository incomingQueueRepository = new IncomingQueueRepository();
         private static OutgoingQueueRepository outgoingQueueRepository = new OutgoingQueueRepository();
+        private static OfflineConnectionCleanWorker offlineConnectionCleanWorker = new OfflineConnectionCleanWorker();
 
         public static void Start(int port)
         {
@@ -31,6 +33,21 @@ namespace Core.Server
             {
                 StartDispatchOutgoingQueue();
             }, TaskCreationOptions.LongRunning);
+
+            Task.Factory.StartNew(() =>
+            {
+                StartCleanWorker();
+            }, TaskCreationOptions.LongRunning);
+        }
+
+        private static void StartCleanWorker()
+        {
+            while (true)
+            {
+                offlineConnectionCleanWorker.DetectAndTagInactiveConnectionWorkers();
+
+                offlineConnectionCleanWorker.CleanTaggedConnectionWorkers();
+            }
         }
 
         internal static void StartDispatchIncomeQueue()
