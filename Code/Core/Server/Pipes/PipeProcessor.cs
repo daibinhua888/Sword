@@ -31,13 +31,24 @@ namespace Core.Server.Pipes
             incomeCommand.Add(task);
         }
 
+        public void CompleteTaskAsync()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                var result = this.WaitForResult();
+
+                if (result.ConnectionWorker.IsTagged)
+                    return;
+
+                ServerRuntime.AddCommandResultToOutgoingQueueRepository(result);
+
+                this.pipeProcessorPool.BackIntoPool(this);
+            });
+        }
+
         public CommandResult WaitForResult()
         {
-            var result=this.outgoingCommand.Take();
-
-            this.pipeProcessorPool.BackIntoPool(this);
-
-            return result;
+            return this.outgoingCommand.Take();
         }
 
         private void SetResult(CommandResult result)
@@ -58,7 +69,13 @@ namespace Core.Server.Pipes
 
         private CommandResult Process(Command command)
         {
+            //管道开始
+            //管道结束
+
+            //装配返回对象
             CommandResult result = new CommandResult();
+
+            result.ConnectionWorker = command.ConnectionWorker;
 
             result.Result = SerializerUtility.Instance().BinSerialize("Server: " + DateTime.Now.ToString());
 

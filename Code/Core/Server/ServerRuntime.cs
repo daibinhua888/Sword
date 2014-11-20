@@ -74,19 +74,11 @@ namespace Core.Server
 
                 Console.WriteLine("Incoming: "+ incomingMsg.Method2Invoke);
 
-                //需要extract成其他thread中执行
-                Task.Factory.StartNew(() => {
-                    PipeProcessor pipe = pipeProcessorPool.PickOneIdle();
+                PipeProcessor pipe = pipeProcessorPool.PickOneIdle();
 
-                    pipe.GiveTask(incomingMsg);
-                    var result = pipe.WaitForResult();
+                pipe.GiveTask(incomingMsg);
 
-                    if (incomingMsg.ConnectionWorker.IsTagged)
-                        return;
-
-                    result.ConnectionWorker = incomingMsg.ConnectionWorker;
-                    ServerRuntime.AddCommandResultToOutgoingQueueRepository(result);
-                });
+                pipe.CompleteTaskAsync();
             }
         }
 
