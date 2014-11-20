@@ -5,9 +5,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Communication
+namespace Core.Server
 {
-    public class ConnectionAcceptor
+    internal class ConnectionAcceptor
     {
         private ConnectionMaster master;
         public SocketAsyncEventArgs SocketAsyncEventArgs { get; set; }

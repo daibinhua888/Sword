@@ -44,20 +44,28 @@
     <Compile Include="CommandBus\CommandBusClient.cs" />
     <Compile Include="CommandBus\CommandBusFactory.cs" />
     <Compile Include="CommandBus\CommandResult.cs" />
-    <Compile Include="Communication\ClientConnectionManager.cs" />
-    <Compile Include="Communication\StickPackageDeal\CommandParser.cs" />
-    <Compile Include="Communication\StickPackageDeal\CommandParserUtils.cs" />
+    <Compile Include="CommandBus\ClientConnectionManager.cs" />
+    <Compile Include="Server\IncomingQueueRepository.cs" />
+    <Compile Include="Server\IPipelineModule.cs" />
+    <Compile Include="Server\Modules\SessionModule.cs" />
+    <Compile Include="Server\Pipes\PipeProcessor.cs" />
+    <Compile Include="Server\Pipes\PipeProcessorPool.cs" />
+    <Compile Include="Server\ServerRuntime.cs" />
+    <Compile Include="Server\StickPackageDeal\CommandParser.cs" />
+    <Compile Include="Server\StickPackageDeal\CommandParserUtils.cs" />
     <Compile Include="CommandBus\Command.cs" />
-    <Compile Include="Communication\ConnectionMaster.cs" />
-    <Compile Include="Communication\ConnectionWorker.cs" />
-    <Compile Include="Communication\QueueDispatcher.cs" />
+    <Compile Include="Server\ConnectionMaster.cs" />
+    <Compile Include="Server\ConnectionWorker.cs" />
     <Compile Include="CommandBus\CommandBusILEmitAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Communication\ConnectionAcceptor.cs" />
+    <Compile Include="Server\ConnectionAcceptor.cs" />
     <Compile Include="Clients\SwordServiceAttribute.cs" />
+    <Compile Include="Server\OutgoingQueueRepository.cs" />
     <Compile Include="Utils\SerializerUtility.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Server\Selectors\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

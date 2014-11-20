@@ -6,12 +6,13 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Communication
+namespace Core.Server
 {
-    public class ConnectionMaster
+    internal class ConnectionMaster
     {
         private int listenPort;
         private int listenBackLog=5;
+
         private List<ConnectionWorker> connectionObjects = new List<ConnectionWorker>();
         private object lock_connectionObjects = new object();
 

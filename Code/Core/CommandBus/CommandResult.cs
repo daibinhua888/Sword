@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,8 @@ namespace Core.CommandBus
     public class CommandResult
     {
         public byte[] Result { get; set; }
+
+        [NonSerialized]
+        public ConnectionWorker ConnectionWorker;
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Communication.StickPackageDeal
+namespace Core.Server.StickPackageDeal
 {
     internal static class CommandParserUtils
     {

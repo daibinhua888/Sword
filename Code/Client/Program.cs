@@ -1,6 +1,6 @@
 ﻿using Core.Clients;
 using Core.CommandBus;
-using Core.Communication;
+using Core.Server;
 using Core.Utils;
 using ServiceImpls;
 using System;

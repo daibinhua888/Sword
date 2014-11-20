@@ -1,5 +1,5 @@
 ﻿using Core.CommandBus;
-using Core.Communication.StickPackageDeal;
+using Core.Server.StickPackageDeal;
 using Core.Utils;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Core.Communication
+namespace Core.Server
 {
     public class ConnectionWorker
     {
@@ -27,8 +27,6 @@ namespace Core.Communication
             this.saea_receive.SetBuffer(receiveBuffer, 0, receiveBuffer.Length);
 
             this.saea_receive.Completed += SocketAsyncEventArgs_Completed;
-
-            this.responseDispatcher = new QueueDispatcher(socket);
         }
 
         private byte[] receiveBuffer;
@@ -36,7 +34,6 @@ namespace Core.Communication
         public SocketAsyncEventArgs saea_receive { get; set; }
         public DateTime LastActiveTime { get; set; }
         private CommandParser<Command> parser;
-        private QueueDispatcher responseDispatcher;
 
         public void StartReceive()
         {
@@ -82,15 +79,25 @@ namespace Core.Communication
             {
                 cmds.ForEach(cmd =>
                 {
-                    Console.WriteLine("[{0}] New Command: " + cmd.Method2Invoke+", "+cmd.CallContract, cmd.SessionID);
-
-                    CommandResult result = new CommandResult();
-
-                    result.Result = SerializerUtility.Instance().BinSerialize("Server: " + DateTime.Now.ToString());
-
-                    this.responseDispatcher.Dispatch(result);
+                    cmd.ConnectionWorker = this;
+                    ServerRuntime.AddCommandToIncomingQueueRepository(cmd);
                 });
             }
+        }
+
+        internal void SendResponse(CommandResult result)
+        {
+            MemoryStream ms = new MemoryStream();
+            BufferedStream bs = new BufferedStream(ms);
+            BinaryWriter bw = new BinaryWriter(bs, UnicodeEncoding.UTF8);
+
+            var cmdBytes = SerializerUtility.Instance().BinSerialize(result);
+            bw.Write(cmdBytes.Length);
+            bw.Write(cmdBytes);
+
+            bw.Flush();
+
+            this.Socket.Send(ms.ToArray());
         }
     }
 }

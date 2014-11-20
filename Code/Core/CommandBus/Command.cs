@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,5 +31,8 @@ namespace Core.CommandBus
         /// 调用参数
         /// </summary>
         public List<object> Arguments { get; set; }
+
+        [NonSerialized]
+        public ConnectionWorker ConnectionWorker;
     }
 }

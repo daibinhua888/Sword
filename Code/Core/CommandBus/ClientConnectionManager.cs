@@ -1,6 +1,6 @@
 ﻿using Core.Clients;
 using Core.CommandBus;
-using Core.Communication.StickPackageDeal;
+using Core.Server.StickPackageDeal;
 using Core.Utils;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Communication
+namespace Core.CommandBus
 {
     internal class ClientConnectionManager:IDisposable
     {

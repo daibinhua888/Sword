@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.Communication;
+using Core.Server;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,8 +17,7 @@ namespace ConsoleApplication1
         {
             Console.Title = "Server";
 
-            ConnectionMaster master = new ConnectionMaster(888);
-            master.Start();
+            ServerRuntime.Start(888);
 
             Console.WriteLine("Server started.");
             Console.ReadKey();
