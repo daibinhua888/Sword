@@ -1,4 +1,5 @@
-﻿using Core.CommandBus;
+﻿using Core.Clients;
+using Core.CommandBus;
 using Core.Communication.StickPackageDeal;
 using Core.Utils;
 using System;
@@ -26,7 +27,7 @@ namespace Core.Communication
 
         public void Connect()
         {
-            clientSocket.Connect("localhost", 888);
+            clientSocket.Connect(SwordConfiguration.Server, SwordConfiguration.Port);
         }
 
         public void Send(Command cmd)

@@ -9,11 +9,13 @@ namespace Core.Communication
 {
     public class ConnectionAcceptor
     {
+        private ConnectionMaster master;
         public SocketAsyncEventArgs SocketAsyncEventArgs { get; set; }
         private Socket serverSocket { get; set; }
 
-        public ConnectionAcceptor(Socket socket)
+        public ConnectionAcceptor(ConnectionMaster master, Socket socket)
         {
+            this.master = master;
             this.serverSocket = socket;
 
             this.SocketAsyncEventArgs = new SocketAsyncEventArgs();
@@ -44,6 +46,8 @@ namespace Core.Communication
                     return;
                 }
 
+                Console.WriteLine("New client[{0}] connected.", e.AcceptSocket.RemoteEndPoint.ToString());
+
                 ProcessAccept(e.AcceptSocket);
             }
 
@@ -52,14 +56,12 @@ namespace Core.Communication
 
         private void ProcessAccept(Socket acceptSocket)
         {
-            var cObj = new ConnectionWorker(acceptSocket);
-            cObj.LastActiveTime = DateTime.Now;
+            var worker = new ConnectionWorker(acceptSocket);
+            worker.LastActiveTime = DateTime.Now;
 
-            ConnectionMaster.ConnectionObjects.Add(cObj);
+            this.master.AddWorker(worker);
 
-            Console.WriteLine("New client[{0}] connected.", acceptSocket.RemoteEndPoint.ToString());
-
-            cObj.StartReceive();
+            worker.StartReceive();
         }
     }
 }

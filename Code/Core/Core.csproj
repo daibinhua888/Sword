@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clients\Sword.cs" />
+    <Compile Include="Clients\SwordConfiguration.cs" />
     <Compile Include="CommandBus\CommandBusClient.cs" />
     <Compile Include="CommandBus\CommandBusFactory.cs" />
     <Compile Include="CommandBus\CommandResult.cs" />
@@ -50,7 +51,7 @@
     <Compile Include="Communication\ConnectionMaster.cs" />
     <Compile Include="Communication\ConnectionWorker.cs" />
     <Compile Include="Communication\QueueDispatcher.cs" />
-    <Compile Include="EmitCommandBus\Commonization.cs" />
+    <Compile Include="CommandBus\CommandBusILEmitAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Communication\ConnectionAcceptor.cs" />
     <Compile Include="Clients\SwordServiceAttribute.cs" />

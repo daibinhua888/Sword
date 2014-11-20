@@ -18,11 +18,9 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            CommandBusClient cmdBus = CommandBusFactory.GetCommandBus();
+            Console.Title = "Client1";
 
-            cmdBus.Start();
-
-            Console.Title = "Client1 " + cmdBus.LocalEndPoint.ToString();
+            SwordConfiguration.SetServerInfo("localhost", 888);
 
             using (var proxy = new Sword<ITest>())
             {
@@ -44,12 +42,8 @@ namespace Client
                 }
             }
 
-
-            cmdBus.Stop();
-
             Console.WriteLine("done");
             Console.ReadKey();
-
         }
     }
 }

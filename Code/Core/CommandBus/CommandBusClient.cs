@@ -14,9 +14,13 @@ namespace Core.CommandBus
     {
         private ClientConnectionManager mgr;
         private string SessionID { get; set; }
+        private bool started = false;
 
         public void Start()
         {
+            if (started)
+                return;
+
             this.SessionID = Guid.NewGuid().ToString();
 
             if (mgr == null)
@@ -46,23 +50,5 @@ namespace Core.CommandBus
         {
             return mgr.Receive();
         }
-
-        public EndPoint LocalEndPoint
-        {
-            get
-            {
-                return mgr.LocalEndPoint;
-            }
-        }
-
-        public EndPoint RemoteEndPoint
-        {
-            get
-            {
-                return mgr.RemoteEndPoint;
-            }
-        }
-
-        
     }
 }

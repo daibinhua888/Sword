@@ -1,4 +1,4 @@
-﻿using Core.EmitCommandBus;
+﻿using Core.CommandBus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +20,8 @@ namespace Core.Clients
         }
 
         public Sword()
-        { 
-            this._proxy=Commonization.Create<T>();
+        {
+            this._proxy = CommandBusILEmitAdapter.Create<T>();
         }
 
         public void Dispose()

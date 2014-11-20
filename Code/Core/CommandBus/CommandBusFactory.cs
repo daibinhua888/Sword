@@ -19,6 +19,7 @@ namespace Core.CommandBus
                     return cmdBusClient;
 
                 cmdBusClient = new CommandBusClient();
+                cmdBusClient.Start();
 
                 return cmdBusClient;
             }

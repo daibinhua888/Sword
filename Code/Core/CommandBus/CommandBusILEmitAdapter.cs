@@ -8,9 +8,9 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.EmitCommandBus
+namespace Core.CommandBus
 {
-    public class Commonization
+    public class CommandBusILEmitAdapter
     {
         private static Dictionary<Type, Type> createdProxies = new Dictionary<Type, Type>();
 
