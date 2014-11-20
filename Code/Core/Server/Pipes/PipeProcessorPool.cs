@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,34 +12,43 @@ namespace Core.Server.Pipes
         private int pipeProcessorCount;
         private int idlePipeProcessorCount;
 
-        public List<PipeProcessor> PipeProcessors { get; set; }
-        private object lk_pipes = new object();
+        private BlockingCollection<PipeProcessor> idlePipeProcessors = new BlockingCollection<PipeProcessor>();
+        private List<PipeProcessor> busyPipeProcessors = new List<PipeProcessor>();
 
         public PipeProcessorPool(int count)
         {
             this.pipeProcessorCount = count;
             this.idlePipeProcessorCount = this.pipeProcessorCount;
-
-            this.PipeProcessors = new List<PipeProcessor>();
         }
 
         public void PrepareIdlePipeProcessors()
         {
             for (var i = 0; i < this.pipeProcessorCount; i++)
             {
-                var pipe = new PipeProcessor();
+                var pipe = new PipeProcessor(this);
 
-                this.PipeProcessors.Add(pipe);
+                this.idlePipeProcessors.Add(pipe);
             }
         }
 
         public PipeProcessor PickOneIdle()
         {
-            //lock (lk_pipes)
-            //{ 
+            var pipe = this.idlePipeProcessors.Take();
 
-            //}
-            return this.PipeProcessors.First();
+            Console.WriteLine("PickOneIdle");
+
+            this.busyPipeProcessors.Add(pipe);
+
+            return pipe;
+        }
+
+        public void BackIntoPool(PipeProcessor pipeProcessor)
+        {
+            Console.WriteLine("BackIntoPool");
+
+            this.busyPipeProcessors.Remove(pipeProcessor);
+
+            this.idlePipeProcessors.Add(pipeProcessor);
         }
     }
 }

@@ -18,12 +18,20 @@ namespace Core.Server
         private static IncomingQueueRepository incomingQueueRepository = new IncomingQueueRepository();
         private static OutgoingQueueRepository outgoingQueueRepository = new OutgoingQueueRepository();
         private static OfflineConnectionCleanWorker offlineConnectionCleanWorker = new OfflineConnectionCleanWorker();
-        private static PipeProcessorPool pipeProcessorPool = new PipeProcessorPool(1);
+        private static PipeProcessorPool pipeProcessorPool;
+
+        public static void Setup(int maxPoolSize)
+        {
+            pipeProcessorPool = new PipeProcessorPool(maxPoolSize);
+        }
 
         public static void Start(int port)
         {
             if (master != null)
                 throw new Exception("已经Start了");
+
+            if (pipeProcessorPool == null)
+                Setup(10);
 
             master = new ConnectionMaster(port);
             master.Start();
@@ -61,14 +69,24 @@ namespace Core.Server
             {
                 var incomingMsg = incomingQueueRepository.DequeueBlock();
 
+                if (incomingMsg.ConnectionWorker.IsTagged)
+                    continue;
+
                 Console.WriteLine("Incoming: "+ incomingMsg.Method2Invoke);
 
-                PipeProcessor pipe = pipeProcessorPool.PickOneIdle();
+                //需要extract成其他thread中执行
+                Task.Factory.StartNew(() => {
+                    PipeProcessor pipe = pipeProcessorPool.PickOneIdle();
 
-                CommandResult result =pipe.Process(incomingMsg);
+                    pipe.GiveTask(incomingMsg);
+                    var result = pipe.WaitForResult();
 
-                result.ConnectionWorker = incomingMsg.ConnectionWorker;
-                ServerRuntime.AddCommandResultToOutgoingQueueRepository(result);
+                    if (incomingMsg.ConnectionWorker.IsTagged)
+                        return;
+
+                    result.ConnectionWorker = incomingMsg.ConnectionWorker;
+                    ServerRuntime.AddCommandResultToOutgoingQueueRepository(result);
+                });
             }
         }
 
@@ -77,6 +95,9 @@ namespace Core.Server
             while (true)
             {
                 var outgoingMsg = outgoingQueueRepository.DequeueBlock();
+
+                if (outgoingMsg.ConnectionWorker.IsTagged)
+                    continue;
 
                 Console.WriteLine("Outgoing: " + outgoingMsg.Result.Length);
 

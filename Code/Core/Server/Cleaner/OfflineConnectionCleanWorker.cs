@@ -12,10 +12,14 @@ namespace Core.Server.Cleaner
 
         public void DetectAndTagInactiveConnectionWorkers()
         {
-            ServerRuntime.master.connectionObjects.ForEach(c => {
-                if (c.LastActiveTime.Add(timeout) < DateTime.Now)
-                    c.IsTagged = true;
-            });
+            lock (ServerRuntime.master.lock_connectionObjects)
+            {
+                ServerRuntime.master.connectionObjects.ForEach(c =>
+                {
+                    if (c.LastActiveTime.Add(timeout) < DateTime.Now)
+                        c.IsTagged = true;
+                });
+            }
         }
 
         public void CleanTaggedConnectionWorkers()

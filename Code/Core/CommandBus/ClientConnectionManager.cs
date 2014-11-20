@@ -62,13 +62,7 @@ namespace Core.CommandBus
         {
             if (clientSocket != null)
             {
-                try
-                {
-                    clientSocket.Close();
-                }
-                catch
-                { 
-                }
+                TryCatchHelper.Do(() => { clientSocket.Close(); });
             }
 
             clientSocket = null;
@@ -77,22 +71,6 @@ namespace Core.CommandBus
         public void Dispose()
         {
             this.Close();
-        }
-
-        public EndPoint LocalEndPoint
-        {
-            get
-            {
-                return clientSocket.LocalEndPoint;
-            }
-        }
-
-        public EndPoint RemoteEndPoint
-        {
-            get
-            {
-                return clientSocket.RemoteEndPoint;
-            }
         }
     }
 }

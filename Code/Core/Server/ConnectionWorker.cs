@@ -99,7 +99,17 @@ namespace Core.Server
 
             bw.Flush();
 
-            this.Socket.Send(ms.ToArray());
+            if (!this.IsTagged)
+            {
+                try
+                {
+                    this.Socket.Send(ms.ToArray());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Socket.Send失败");
+                }
+            }
         }
 
         public void Dispose()
