@@ -1,11 +1,13 @@
 ﻿using Core.CommandBus;
 using Core.Server.Cleaner;
+using Core.Server.Pipes;
 using Core.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Core.Server
@@ -16,6 +18,7 @@ namespace Core.Server
         private static IncomingQueueRepository incomingQueueRepository = new IncomingQueueRepository();
         private static OutgoingQueueRepository outgoingQueueRepository = new OutgoingQueueRepository();
         private static OfflineConnectionCleanWorker offlineConnectionCleanWorker = new OfflineConnectionCleanWorker();
+        private static PipeProcessorPool pipeProcessorPool = new PipeProcessorPool(1);
 
         public static void Start(int port)
         {
@@ -24,6 +27,8 @@ namespace Core.Server
 
             master = new ConnectionMaster(port);
             master.Start();
+
+            pipeProcessorPool.PrepareIdlePipeProcessors();
 
             Task.Factory.StartNew(() => {
                 StartDispatchIncomeQueue();
@@ -58,9 +63,9 @@ namespace Core.Server
 
                 Console.WriteLine("Incoming: "+ incomingMsg.Method2Invoke);
 
+                PipeProcessor pipe = pipeProcessorPool.PickOneIdle();
 
-                CommandResult result = new CommandResult();
-                result.Result = SerializerUtility.Instance().BinSerialize("Server: " + DateTime.Now.ToString());
+                CommandResult result =pipe.Process(incomingMsg);
 
                 result.ConnectionWorker = incomingMsg.ConnectionWorker;
                 ServerRuntime.AddCommandResultToOutgoingQueueRepository(result);
