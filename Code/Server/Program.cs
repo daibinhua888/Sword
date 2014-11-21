@@ -19,7 +19,6 @@ namespace ConsoleApplication1
         {
             Console.Title = "Server";
 
-            //ServerRuntime.Setup(10);
             ServerRuntime.Start(888);
 
             Console.WriteLine("Server started.");

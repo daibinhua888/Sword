@@ -78,13 +78,9 @@ namespace Sword.Server
                 if (incomingMsg.ConnectionWorker.IsTagged)
                     continue;
 
-                Console.WriteLine("Incoming: "+ incomingMsg.Method2Invoke);
-
                 PipeProcessor pipe = pipeProcessorPool.PickOneIdle();
 
                 pipe.GiveTask(incomingMsg);
-
-                pipe.CompleteTaskAsync();
             }
         }
 
@@ -96,8 +92,6 @@ namespace Sword.Server
 
                 if (outgoingMsg.ConnectionWorker.IsTagged)
                     continue;
-
-                Console.WriteLine("Outgoing: " + outgoingMsg.Result.Length);
 
                 outgoingMsg.ConnectionWorker.SendResponse(outgoingMsg);
             }

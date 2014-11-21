@@ -16,7 +16,6 @@ namespace Sword.Server.Pipes
     {
         private PipeProcessorPool pipeProcessorPool;
         private BlockingCollection<Command> incomeCommand=new BlockingCollection<Command>();
-        private BlockingCollection<CommandResult> outgoingCommand=new BlockingCollection<CommandResult>();
 
         public PipeProcessor(PipeProcessorPool pipeProcessorPool)
         {
@@ -33,11 +32,13 @@ namespace Sword.Server.Pipes
             incomeCommand.Add(task);
         }
 
-        public void CompleteTaskAsync()
+        private void InnerProcessLogic()
         {
-            Task.Factory.StartNew(() =>
+            while (true)
             {
-                var result = this.WaitForResult();
+                var cmd = this.incomeCommand.Take();
+
+                var result=Process(cmd);
 
                 if (result.ConnectionWorker.IsTagged)
                     return;
@@ -45,27 +46,6 @@ namespace Sword.Server.Pipes
                 ServerRuntime.AddCommandResultToOutgoingQueueRepository(result);
 
                 this.pipeProcessorPool.BackIntoPool(this);
-            });
-        }
-
-        public CommandResult WaitForResult()
-        {
-            return this.outgoingCommand.Take();
-        }
-
-        private void SetResult(CommandResult result)
-        {
-            this.outgoingCommand.Add(result);
-        }
-
-
-        private void InnerProcessLogic()
-        {
-            while (true)
-            {
-                var cmd = this.incomeCommand.Take();
-
-                SetResult(Process(cmd));
             }
         }
 

@@ -54,8 +54,6 @@ C:\Users\Administrator\Documents\GitHub\sword\Server\obj\Debug\ConsoleApplicatio
 C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\ConsoleApplication1.exe.config
 C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\ConsoleApplication1.exe
 C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\ConsoleApplication1.pdb
-C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\Core.dll
-C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\Core.pdb
 C:\Users\Administrator\Documents\GitHub\sword\Code\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\sword\Code\Server\obj\Debug\ConsoleApplication1.exe
 C:\Users\Administrator\Documents\GitHub\sword\Code\Server\obj\Debug\ConsoleApplication1.pdb
@@ -69,3 +67,7 @@ C:\Users\Aaron\Documents\GitHub\sword\Code\Server\obj\Debug\ConsoleApplication1.
 C:\Users\Aaron\Documents\GitHub\sword\Code\Server\obj\Debug\ConsoleApplication1.pdb
 C:\Users\Aaron\Documents\GitHub\sword\Code\Server\bin\Debug\ServiceImpls.dll
 C:\Users\Aaron\Documents\GitHub\sword\Code\Server\bin\Debug\ServiceImpls.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\ServiceImpls.dll
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\Sword.dll
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\Sword.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Debug\ServiceImpls.pdb

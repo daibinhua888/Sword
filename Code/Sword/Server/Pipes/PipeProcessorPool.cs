@@ -35,8 +35,6 @@ namespace Sword.Server.Pipes
         {
             var pipe = this.idlePipeProcessors.Take();
 
-            Console.WriteLine("PickOneIdle");
-
             this.busyPipeProcessors.Add(pipe);
 
             return pipe;
@@ -44,8 +42,6 @@ namespace Sword.Server.Pipes
 
         public void BackIntoPool(PipeProcessor pipeProcessor)
         {
-            Console.WriteLine("BackIntoPool");
-
             this.busyPipeProcessors.Remove(pipeProcessor);
 
             this.idlePipeProcessors.Add(pipeProcessor);

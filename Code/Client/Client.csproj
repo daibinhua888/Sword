@@ -57,13 +57,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Sword.csproj">
+    <ProjectReference Include="..\Sword\Sword.csproj">
       <Project>{53f73cb4-3d53-4c4f-b15c-255d31a22a3d}</Project>
       <Name>Sword</Name>
     </ProjectReference>
     <ProjectReference Include="..\ServiceImpls\ServiceImpls.csproj">
       <Project>{0c756408-735b-4af0-af29-c02c765ab3a5}</Project>
-      <Name>ServiceImpls %28ServiceImpls\ServiceImpls%29</Name>
+      <Name>ServiceImpls %28BusinessCode\ServiceImpls%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

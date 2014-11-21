@@ -27,6 +27,7 @@ namespace Sword.Server
         {
             Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             serverSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            serverSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.NoDelay, true);
 
             EndPoint listenAddress = new IPEndPoint(IPAddress.Any, this.listenPort);
             serverSocket.Bind(listenAddress);
