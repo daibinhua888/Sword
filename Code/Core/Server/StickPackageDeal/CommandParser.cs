@@ -1,11 +1,11 @@
-﻿using Core.CommandBus;
+﻿using Sword.CommandBus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Server.StickPackageDeal
+namespace Sword.Server.StickPackageDeal
 {
     public class CommandParser<T>
     {

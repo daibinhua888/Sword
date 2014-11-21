@@ -1,5 +1,5 @@
-﻿using Core.Server;
-using Core.Utils;
+﻿using Sword.Server;
+using Sword.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.CommandBus
+namespace Sword.CommandBus
 {
     public class CommandBusClient
     {

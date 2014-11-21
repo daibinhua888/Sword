@@ -7,8 +7,8 @@ C:\Users\Administrator\Documents\GitHub\sword\Code\ServiceImpls\obj\Debug\Servic
 C:\Users\Administrator\Documents\GitHub\sword\Code\ServiceImpls\obj\Debug\ServiceImpls.pdb
 C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\bin\Debug\ServiceImpls.dll
 C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\bin\Debug\ServiceImpls.pdb
-C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\bin\Debug\Core.dll
-C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\bin\Debug\Core.pdb
 C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\obj\Debug\ServiceImpls.csprojResolveAssemblyReference.cache
 C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\obj\Debug\ServiceImpls.dll
 C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\obj\Debug\ServiceImpls.pdb
+C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\bin\Debug\Sword.dll
+C:\Users\Aaron\Documents\GitHub\sword\Code\ServiceImpls\bin\Debug\Sword.pdb

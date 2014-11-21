@@ -45,9 +45,9 @@
     <Compile Include="ITest2.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\Core\Sword.csproj">
       <Project>{53f73cb4-3d53-4c4f-b15c-255d31a22a3d}</Project>
-      <Name>Core</Name>
+      <Name>Sword</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,5 @@
-﻿using Core.CommandBus;
-using Core.Utils;
+﻿using Sword.CommandBus;
+using Sword.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.CommandBus
+namespace Sword.CommandBus
 {
     public class CommandBusILEmitAdapter
     {

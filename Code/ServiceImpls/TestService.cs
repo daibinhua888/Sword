@@ -1,5 +1,5 @@
-﻿using Core;
-using Core.Clients;
+﻿using Sword;
+using Sword.Clients;
 using System;
 using System.Collections.Generic;
 using System.Linq;

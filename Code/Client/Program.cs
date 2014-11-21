@@ -1,7 +1,7 @@
-﻿using Core.Clients;
-using Core.CommandBus;
-using Core.Server;
-using Core.Utils;
+﻿using Sword.Clients;
+using Sword.CommandBus;
+using Sword.Server;
+using Sword.Utils;
 using ServiceImpls;
 using System;
 using System.Collections.Generic;

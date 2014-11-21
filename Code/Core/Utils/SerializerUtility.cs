@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Utils
+namespace Sword.Utils
 {
     public class SerializerUtility
     {

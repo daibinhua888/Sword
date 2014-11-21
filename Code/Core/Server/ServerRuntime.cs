@@ -1,7 +1,7 @@
-﻿using Core.CommandBus;
-using Core.Server.Cleaner;
-using Core.Server.Pipes;
-using Core.Utils;
+﻿using Sword.CommandBus;
+using Sword.Server.Cleaner;
+using Sword.Server.Pipes;
+using Sword.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Core.Server
+namespace Sword.Server
 {
     public static class ServerRuntime
     {

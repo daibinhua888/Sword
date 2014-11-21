@@ -62,8 +62,8 @@ C:\Users\Administrator\Documents\GitHub\sword\Code\Server\obj\Debug\ConsoleAppli
 C:\Users\Aaron\Documents\GitHub\sword\Code\Server\bin\Debug\ConsoleApplication1.exe.config
 C:\Users\Aaron\Documents\GitHub\sword\Code\Server\bin\Debug\ConsoleApplication1.exe
 C:\Users\Aaron\Documents\GitHub\sword\Code\Server\bin\Debug\ConsoleApplication1.pdb
-C:\Users\Aaron\Documents\GitHub\sword\Code\Server\bin\Debug\Core.dll
-C:\Users\Aaron\Documents\GitHub\sword\Code\Server\bin\Debug\Core.pdb
 C:\Users\Aaron\Documents\GitHub\sword\Code\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
 C:\Users\Aaron\Documents\GitHub\sword\Code\Server\obj\Debug\ConsoleApplication1.exe
 C:\Users\Aaron\Documents\GitHub\sword\Code\Server\obj\Debug\ConsoleApplication1.pdb
+C:\Users\Aaron\Documents\GitHub\sword\Code\Server\bin\Debug\Sword.dll
+C:\Users\Aaron\Documents\GitHub\sword\Code\Server\bin\Debug\Sword.pdb

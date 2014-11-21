@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Server.Pipes
+namespace Sword.Server.Pipes
 {
     public class PipeProcessorPool
     {

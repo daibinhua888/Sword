@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Server.Modules
+namespace Sword.Server.Modules
 {
     public class SessionModule : IPipelineModule
     {

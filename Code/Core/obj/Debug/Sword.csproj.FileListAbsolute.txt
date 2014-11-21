@@ -1,0 +1,4 @@
+C:\Users\Aaron\Documents\GitHub\sword\Code\Core\bin\Debug\Sword.dll
+C:\Users\Aaron\Documents\GitHub\sword\Code\Core\bin\Debug\Sword.pdb
+C:\Users\Aaron\Documents\GitHub\sword\Code\Core\obj\Debug\Sword.dll
+C:\Users\Aaron\Documents\GitHub\sword\Code\Core\obj\Debug\Sword.pdb

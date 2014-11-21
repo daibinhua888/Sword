@@ -1,5 +1,5 @@
-﻿using Core.CommandBus;
-using Core.Utils;
+﻿using Sword.CommandBus;
+using Sword.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Core.Server.Pipes
+namespace Sword.Server.Pipes
 {
     public class PipeProcessor
     {

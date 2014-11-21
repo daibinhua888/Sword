@@ -1,7 +1,7 @@
-﻿using Core.Clients;
-using Core.CommandBus;
-using Core.Server.StickPackageDeal;
-using Core.Utils;
+﻿using Sword.Clients;
+using Sword.CommandBus;
+using Sword.Server.StickPackageDeal;
+using Sword.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.CommandBus
+namespace Sword.CommandBus
 {
     internal class ClientConnectionManager:IDisposable
     {
