@@ -1,6 +1,7 @@
 ﻿using Sword.CommandBus;
 using Sword.Server.Cleaner;
 using Sword.Server.Pipes;
+using Sword.Server.PipeSelectors;
 using Sword.Utils;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,11 @@ namespace Sword.Server
         private static OutgoingQueueRepository outgoingQueueRepository = new OutgoingQueueRepository();
         private static OfflineConnectionCleanWorker offlineConnectionCleanWorker = new OfflineConnectionCleanWorker();
         private static PipeProcessorPool pipeProcessorPool;
+
+        static ServerRuntime()
+        {
+            ServiceRegistry.RegisterSwordServices();
+        }
 
         public static void Setup(int maxPoolSize)
         {

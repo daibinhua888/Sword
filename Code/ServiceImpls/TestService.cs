@@ -11,9 +11,15 @@ namespace ServiceImpls
     [SwordService]
     public class TestService : ITest
     {
-        public string Test1(string input)
+        public TestResultDTO Test1(string input)
         {
-            return DateTime.Now.ToString();
+            TestResultDTO dto = new TestResultDTO();
+
+            dto.P1 = string.Format("I'm TestService {0}", DateTime.Now.ToString());
+            dto.P2 = "111111111";
+            dto.P3 = DateTime.Now;
+
+            return dto;
         }
     }
 }

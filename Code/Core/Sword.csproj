@@ -46,9 +46,13 @@
     <Compile Include="CommandBus\CommandResult.cs" />
     <Compile Include="CommandBus\ClientConnectionManager.cs" />
     <Compile Include="Server\IncomingQueueRepository.cs" />
-    <Compile Include="Server\IPipelineModule.cs" />
-    <Compile Include="Server\Modules\SessionModule.cs" />
     <Compile Include="Server\Cleaner\OfflineConnectionCleanWorker.cs" />
+    <Compile Include="Server\PipeSelectors\ServiceRegistry.cs" />
+    <Compile Include="Server\PipeSelectors\Descriptors\ServiceImplementationDescriptor.cs" />
+    <Compile Include="Server\PipeSelectors\Descriptors\MethodDescriptor.cs" />
+    <Compile Include="Server\PipeSelectors\Descriptors\ParameterDescriptor.cs" />
+    <Compile Include="Server\PipeSelectors\ParameterParser.cs" />
+    <Compile Include="Server\PipeSelectors\SourceLocation.cs" />
     <Compile Include="Server\Pipes\PipeProcessor.cs" />
     <Compile Include="Server\Pipes\PipeProcessorPool.cs" />
     <Compile Include="Server\ServerRuntime.cs" />
@@ -66,7 +70,7 @@
     <Compile Include="Utils\TryCatchHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Server\Selectors\" />
+    <Folder Include="Server\Modules\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

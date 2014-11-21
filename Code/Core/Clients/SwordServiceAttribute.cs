@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sword.Clients
 {
+    [AttributeUsage(AttributeTargets.Class)]
     public class SwordServiceAttribute:Attribute
     {
     }

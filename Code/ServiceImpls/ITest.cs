@@ -8,6 +8,6 @@ namespace ServiceImpls
 {
     public interface ITest
     {
-        string Test1(string input);
+        TestResultDTO Test1(string input);
     }
 }

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sword.Server.Modules
+namespace Sword.Server.PipeSelectors
 {
-    public class SessionModule : IPipelineModule
+    public enum SourceLocation
     {
+        FromCommand
     }
 }

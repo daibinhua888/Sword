@@ -28,7 +28,7 @@ namespace Client
                 {
                     var result = proxy.Proxy.Test1("fff");
 
-                    Console.WriteLine(i+"===="+result);
+                    Console.WriteLine(i+"===="+result.P1);
                 }
             }
 

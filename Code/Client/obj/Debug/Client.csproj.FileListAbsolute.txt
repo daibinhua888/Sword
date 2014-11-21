@@ -74,9 +74,9 @@ C:\Users\Aaron\Documents\GitHub\sword\Code\Client\bin\Debug\Client.exe.config
 C:\Users\Aaron\Documents\GitHub\sword\Code\Client\bin\Debug\Client.exe
 C:\Users\Aaron\Documents\GitHub\sword\Code\Client\bin\Debug\Client.pdb
 C:\Users\Aaron\Documents\GitHub\sword\Code\Client\bin\Debug\ServiceImpls.dll
+C:\Users\Aaron\Documents\GitHub\sword\Code\Client\bin\Debug\Sword.dll
+C:\Users\Aaron\Documents\GitHub\sword\Code\Client\bin\Debug\Sword.pdb
 C:\Users\Aaron\Documents\GitHub\sword\Code\Client\bin\Debug\ServiceImpls.pdb
 C:\Users\Aaron\Documents\GitHub\sword\Code\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
 C:\Users\Aaron\Documents\GitHub\sword\Code\Client\obj\Debug\Client.exe
 C:\Users\Aaron\Documents\GitHub\sword\Code\Client\obj\Debug\Client.pdb
-C:\Users\Aaron\Documents\GitHub\sword\Code\Client\bin\Debug\Sword.dll
-C:\Users\Aaron\Documents\GitHub\sword\Code\Client\bin\Debug\Sword.pdb

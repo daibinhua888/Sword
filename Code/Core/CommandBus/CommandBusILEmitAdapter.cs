@@ -49,13 +49,13 @@ namespace Sword.CommandBus
                 for (var i = 0; i < methods.Length; i++)
                 {
                     var paramTypes = GetParametersType(methods[i]);
-                    var methodBlfr = typeBldr.DefineMethod(methods[i].Name, MethodAttributes.Public | MethodAttributes.Virtual, CallingConventions.Standard, methods[i].ReturnType, paramTypes);
+                    var methodBlfr = typeBldr.DefineMethod(methods[i].Name, MethodAttributes.Public | MethodAttributes.Virtual, CallingConventions.Standard, methods[i].ReturnType, paramTypes.Select(f=>f.ParameterType).ToArray());
 
                     il = methodBlfr.GetILGenerator();
 
                     //声明各个局部变量
                     var requestLocal = il.DeclareLocal(typeof(Command));
-                    var argsLocal = il.DeclareLocal(typeof(List<object>));
+                    var argsLocal = il.DeclareLocal(typeof(Dictionary<string, object>));
                     var responseLocal = il.DeclareLocal(typeof(CommandResult));
                     var responseResult = il.DeclareLocal(typeof(byte[]));
                     var responseResultCasted = il.DeclareLocal(methods[i].ReturnType);
@@ -66,33 +66,35 @@ namespace Sword.CommandBus
                     il.Emit(OpCodes.Stloc, requestLocal);
                     #endregion
 
-                    #region  List<object> argsLocal=new List<object>();
-                    il.Emit(OpCodes.Newobj, typeof(List<object>).GetConstructor(new Type[0]));
+                    #region  Dictionary<string, object> argsLocal=new Dictionary<string, object>();
+                    il.Emit(OpCodes.Newobj, typeof(Dictionary<string, object>).GetConstructor(new Type[0]));
                     il.Emit(OpCodes.Stloc, argsLocal);
                     #endregion
 
                     #region 将传入方法的参数全部Add到List object 中
-                    MethodInfo mi = typeof(List<object>).GetMethod("Add");
+                    MethodInfo mi = typeof(Dictionary<string, object>).GetMethod("Add");
                     if (paramTypes != null)
                     {
                         for (var index = 0; index < paramTypes.Length; index++)
                         {
-                            if (paramTypes[index].IsValueType)
+                            if (paramTypes[index].ParameterType.IsValueType)
                             {
                                 //box
                                 il.Emit(OpCodes.Ldarg, 1 + index);
-                                il.Emit(OpCodes.Box, paramTypes[index]);
+                                il.Emit(OpCodes.Box, paramTypes[index].ParameterType);
                                 il.Emit(OpCodes.Stloc, value2Object);
 
 
                                 il.Emit(OpCodes.Ldloc, argsLocal);
-                                il.Emit(OpCodes.Ldloc, value2Object);
+                                il.Emit(OpCodes.Ldstr, paramTypes[index].ParameterName);    //Dictionary->key
+                                il.Emit(OpCodes.Ldloc, value2Object);                       //Dictionary->value
                                 il.Emit(OpCodes.Callvirt, mi);
                             }
                             else
                             {
                                 il.Emit(OpCodes.Ldloc, argsLocal);
-                                il.Emit(OpCodes.Ldarg, 1 + index);
+                                il.Emit(OpCodes.Ldstr, paramTypes[index].ParameterName);    //Dictionary->key
+                                il.Emit(OpCodes.Ldarg, 1 + index);                          //Dictionary->value
                                 il.Emit(OpCodes.Callvirt, mi);
                             }
                         }
@@ -178,9 +180,9 @@ namespace Sword.CommandBus
             return (T)Activator.CreateInstance(proxyType, new object[] { CommandBusFactory.GetCommandBus(), SerializerUtility.Instance() });
         }
 
-        private static Type[] GetParametersType(MethodInfo method)
+        private static WrappedMethodInfo[] GetParametersType(MethodInfo method)
         {
-            Type[] paramTypes = null;
+            WrappedMethodInfo[] paramTypes = null;
 
             if (method != null)
             {
@@ -188,15 +190,24 @@ namespace Sword.CommandBus
                 if (parameters.Length > 0)
                 {
 
-                    paramTypes = new Type[parameters.Length];
+                    paramTypes = new WrappedMethodInfo[parameters.Length];
 
                     for (var i = 0; i < parameters.Length; i++)
                     {
-                        paramTypes[i] = parameters[i].ParameterType;
+                        paramTypes[i] = new WrappedMethodInfo();
+
+                        paramTypes[i].ParameterType = parameters[i].ParameterType;
+                        paramTypes[i].ParameterName = parameters[i].Name;
                     }
                 }
             }
             return paramTypes;
+        }
+
+        class WrappedMethodInfo
+        {
+            public string ParameterName { get; set; }
+            public Type ParameterType { get; set; }
         }
     }
 }

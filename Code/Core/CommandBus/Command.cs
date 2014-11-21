@@ -30,7 +30,7 @@ namespace Sword.CommandBus
         /// <summary>
         /// 调用参数
         /// </summary>
-        public List<object> Arguments { get; set; }
+        public Dictionary<string, object> Arguments { get; set; }
 
         [NonSerialized]
         public ConnectionWorker ConnectionWorker;

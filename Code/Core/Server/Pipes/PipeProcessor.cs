@@ -1,9 +1,11 @@
 ﻿using Sword.CommandBus;
+using Sword.Server.PipeSelectors;
 using Sword.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -70,6 +72,17 @@ namespace Sword.Server.Pipes
         private CommandResult Process(Command command)
         {
             //管道开始
+            var serviceDescriptor= ServiceRegistry.ResolveServiceDescriptor(command.CallContract);
+            var methodDescriptor = ServiceRegistry.ResolveMethodDescriptor(command.CallContract, command.Method2Invoke);
+
+            List<object> parameters = new List<object>();
+            
+            foreach (var pd in methodDescriptor.ParameterDescriptors)
+                parameters.Add(ParameterParser.GetValue(command, pd));
+
+            object serviceInstance = Activator.CreateInstance(serviceDescriptor.ServiceType);
+
+            object resultValue = methodDescriptor.MethodInfo.Invoke(serviceInstance, parameters.ToArray());
             //管道结束
 
             //装配返回对象
@@ -77,7 +90,7 @@ namespace Sword.Server.Pipes
 
             result.ConnectionWorker = command.ConnectionWorker;
 
-            result.Result = SerializerUtility.Instance().BinSerialize("Server: " + DateTime.Now.ToString());
+            result.Result = SerializerUtility.Instance().BinSerialize(resultValue);
 
             return result;
         }
