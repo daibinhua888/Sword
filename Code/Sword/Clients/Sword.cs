@@ -10,6 +10,8 @@ namespace Sword.Clients
     public class Sword<T>:IDisposable
         where T: class
     {
+        private CommandBusClient commandBusClient;
+
         private T _proxy;
         public T Proxy
         {
@@ -21,11 +23,18 @@ namespace Sword.Clients
 
         public Sword()
         {
-            this._proxy = CommandBusILEmitAdapter.Create<T>();
+            this.commandBusClient = CommandBusFactory.CreateCommandBus();
+
+            this._proxy = CommandBusILEmitAdapter.Create<T>(this.commandBusClient);
         }
 
         public void Dispose()
         {
+            if (this.commandBusClient != null)
+            {
+                this.commandBusClient.Dispose();
+                this.commandBusClient = null;
+            }
         }
     }
 }

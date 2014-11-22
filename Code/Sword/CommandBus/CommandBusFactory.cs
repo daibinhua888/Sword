@@ -8,21 +8,10 @@ namespace Sword.CommandBus
 {
     public class CommandBusFactory
     {
-        private static CommandBusClient cmdBusClient;
-        private static object lk_cmdBusClient = new object();
-
-        public static CommandBusClient GetCommandBus()
+        public static CommandBusClient CreateCommandBus()
         {
-            lock (lk_cmdBusClient)
-            {
-                if (cmdBusClient != null)
-                    return cmdBusClient;
-
-                cmdBusClient = new CommandBusClient();
-                cmdBusClient.Start();
-
-                return cmdBusClient;
-            }
+            var cmdBusClient = new CommandBusClient();
+            return cmdBusClient;
         }
     }
 }

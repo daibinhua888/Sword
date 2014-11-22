@@ -1,0 +1,10 @@
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Release\ConsoleApplication1.exe.config
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Release\ConsoleApplication1.exe
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Release\ConsoleApplication1.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Release\ServiceImpls.dll
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Release\Sword.dll
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Release\Sword.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\bin\Release\ServiceImpls.pdb
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\obj\Release\ConsoleApplication1.exe
+C:\Users\Administrator\Documents\GitHub\sword\Code\Server\obj\Release\ConsoleApplication1.pdb

@@ -8,7 +8,12 @@ namespace Sword.Server.Cleaner
 {
     public class OfflineConnectionCleanWorker
     {
-        private TimeSpan timeout = TimeSpan.FromSeconds(10);
+        private TimeSpan timeout;
+
+        public OfflineConnectionCleanWorker(TimeSpan timeout)
+        {
+            this.timeout = timeout;
+        }
 
         public void DetectAndTagInactiveConnectionWorkers()
         {

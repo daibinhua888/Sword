@@ -14,7 +14,7 @@ namespace Sword.CommandBus
     {
         private static Dictionary<Type, Type> createdProxies = new Dictionary<Type, Type>();
 
-        public static T Create<T>()
+        public static T Create<T>(CommandBusClient commandBusClient)
         {
             string id = string.Format("Commonization{0}", typeof(T).FullName.Replace(".", ""));
             string proxyTypeString = "Commonization" + id;
@@ -57,7 +57,7 @@ namespace Sword.CommandBus
                     var requestLocal = il.DeclareLocal(typeof(Command));
                     var argsLocal = il.DeclareLocal(typeof(Dictionary<string, object>));
                     var responseLocal = il.DeclareLocal(typeof(CommandResult));
-                    var responseResult = il.DeclareLocal(typeof(byte[]));
+                    var response_Result_Bytes = il.DeclareLocal(typeof(byte[]));
                     var responseResultCasted = il.DeclareLocal(methods[i].ReturnType);
                     var value2Object = il.DeclareLocal(typeof(object));
 
@@ -145,23 +145,26 @@ namespace Sword.CommandBus
                     il.Emit(OpCodes.Stloc, responseLocal);
                     #endregion
 
-                    #region responseResult=responseLocal.Result;
-                    mi = typeof(CommandResult).GetMethod("get_Result");
-                    il.Emit(OpCodes.Ldloc, responseLocal);
-                    il.Emit(OpCodes.Callvirt, mi);
-                    il.Emit(OpCodes.Stloc, responseResult);
-                    #endregion
+                    if (methods[i].ReturnType != typeof(void))
+                    {
+                        #region responseResult=responseLocal.Result/Successful/Exception;
+                        mi = typeof(CommandResult).GetMethod("get_Result");
+                        il.Emit(OpCodes.Ldloc, responseLocal);
+                        il.Emit(OpCodes.Callvirt, mi);
+                        il.Emit(OpCodes.Stloc, response_Result_Bytes);
+                        #endregion
 
-                    #region SerializerUtility.BinDeserialize<T>(cmdResult.Result)
-                    mi = typeof(SerializerUtility).GetMethod("BinDeserialize");
-                    mi = mi.MakeGenericMethod(methods[i].ReturnType);
-                    il.Emit(OpCodes.Ldarg_0);
-                    il.Emit(OpCodes.Ldfld, serializeField);
-                    il.Emit(OpCodes.Ldloc, responseResult);
-                    il.Emit(OpCodes.Callvirt, mi);
-                    il.Emit(OpCodes.Stloc, responseResultCasted);
-                    il.Emit(OpCodes.Ldloc, responseResultCasted);
-                    #endregion
+                        #region SerializerUtility.BinDeserialize<T>(cmdResult.Result)
+                        mi = typeof(SerializerUtility).GetMethod("BinDeserialize");
+                        mi = mi.MakeGenericMethod(methods[i].ReturnType);
+                        il.Emit(OpCodes.Ldarg_0);
+                        il.Emit(OpCodes.Ldfld, serializeField);
+                        il.Emit(OpCodes.Ldloc, response_Result_Bytes);
+                        il.Emit(OpCodes.Callvirt, mi);
+                        il.Emit(OpCodes.Stloc, responseResultCasted);
+                        il.Emit(OpCodes.Ldloc, responseResultCasted);
+                        #endregion
+                    }
 
                     if (methods[i].ReturnType == typeof(void))
                         il.Emit(OpCodes.Pop);
@@ -177,7 +180,7 @@ namespace Sword.CommandBus
 
             proxyType = createdProxies[typeof(T)];
 
-            return (T)Activator.CreateInstance(proxyType, new object[] { CommandBusFactory.GetCommandBus(), SerializerUtility.Instance() });
+            return (T)Activator.CreateInstance(proxyType, new object[] { commandBusClient, SerializerUtility.Instance() });
         }
 
         private static WrappedMethodInfo[] GetParametersType(MethodInfo method)
@@ -202,12 +205,6 @@ namespace Sword.CommandBus
                 }
             }
             return paramTypes;
-        }
-
-        class WrappedMethodInfo
-        {
-            public string ParameterName { get; set; }
-            public Type ParameterType { get; set; }
         }
     }
 }

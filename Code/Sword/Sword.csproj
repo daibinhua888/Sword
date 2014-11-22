@@ -45,6 +45,7 @@
     <Compile Include="CommandBus\CommandBusFactory.cs" />
     <Compile Include="CommandBus\CommandResult.cs" />
     <Compile Include="CommandBus\ClientConnectionManager.cs" />
+    <Compile Include="CommandBus\WrappedMethodInfo.cs" />
     <Compile Include="Server\IncomingQueueRepository.cs" />
     <Compile Include="Server\Cleaner\OfflineConnectionCleanWorker.cs" />
     <Compile Include="Server\PipeSelectors\ServiceRegistry.cs" />

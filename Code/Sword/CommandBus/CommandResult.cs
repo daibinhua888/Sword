@@ -12,6 +12,10 @@ namespace Sword.CommandBus
     {
         public byte[] Result { get; set; }
 
+        public bool Sucessful { get; set; }
+
+        public byte[] Exception { get; set; }
+
         [NonSerialized]
         public ConnectionWorker ConnectionWorker;
     }

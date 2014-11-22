@@ -22,25 +22,69 @@ namespace Client
 
             SwordConfiguration.SetServerInfo("localhost", 888);
 
-            using (var proxy = new Sword<ITest>())
+            //using (var proxy = new Sword<ITest>())
+            //{
+            //    for (var i = 0; i < 500; i++)
+            //    {
+            //        try
+            //        {
+            //            var result = proxy.Proxy.Test1("fff");
+
+            //            Console.WriteLine(i + "====" + result.P1);
+            //        }
+            //        catch(Exception ex)
+            //        {
+            //            Console.WriteLine(ex.Message);
+            //        }
+            //    }
+            //}
+
+            //using (var proxy = new Sword<ITest2>())
+            //{
+            //    for (var i = 0; i < 500; i++)
+            //    {
+            //        var result = proxy.Proxy.Test2("fff");
+
+            //        Console.WriteLine(i + "====" + result);
+            //    }
+            //}
+
+            using (var proxy = new Sword<ITest3>())
             {
-                for (var i = 0; i < 500; i++)
-                {
-                    var result = proxy.Proxy.Test1("fff");
+                //try
+                //{
+                    var result1 = proxy.Proxy.Test3_1("fff");
 
-                    Console.WriteLine(i+"===="+result.P1);
-                }
+                    Console.WriteLine(result1);
+                //}
+                //catch (Exception ex)
+                //{
+                //    Console.WriteLine(ex.Message);
+                //}
+
+                //try
+                //{
+                    var result2 = proxy.Proxy.Test3_2("fff");
+
+                    Console.WriteLine(result2);
+                //}
+                //catch (Exception ex)
+                //{
+                //    Console.WriteLine(ex.Message);
+                //}
+
+                //try
+                //{
+                    proxy.Proxy.Test3_3("fff");
+
+                    Console.WriteLine("executed");
+                //}
+                //catch (Exception ex)
+                //{
+                //    Console.WriteLine(ex.Message);
+                //}
             }
-
-            using (var proxy = new Sword<ITest2>())
-            {
-                for (var i = 0; i < 500; i++)
-                {
-                    var result = proxy.Proxy.Test2("fff");
-
-                    Console.WriteLine(i + "====" + result);
-                }
-            }
+            
 
             Console.WriteLine("done");
             Console.ReadKey();

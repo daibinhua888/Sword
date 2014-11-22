@@ -51,7 +51,6 @@ namespace Sword.Server.Pipes
 
         private CommandResult Process(Command command)
         {
-            //管道开始
             var serviceDescriptor= ServiceRegistry.ResolveServiceDescriptor(command.CallContract);
             var methodDescriptor = ServiceRegistry.ResolveMethodDescriptor(command.CallContract, command.Method2Invoke);
 
@@ -62,15 +61,29 @@ namespace Sword.Server.Pipes
 
             object serviceInstance = Activator.CreateInstance(serviceDescriptor.ServiceType);
 
-            object resultValue = methodDescriptor.MethodInfo.Invoke(serviceInstance, parameters.ToArray());
-            //管道结束
+            bool successful = false;
+            Exception exc=null;
+            object resultValue = null;
+            try
+            {
+                resultValue = methodDescriptor.MethodInfo.Invoke(serviceInstance, parameters.ToArray());
+                successful = true;
+            }
+            catch(Exception ex)
+            {
+                exc = ex.InnerException;
+                successful = false;
+            }
 
-            //装配返回对象
             CommandResult result = new CommandResult();
 
+            result.Sucessful = successful;
             result.ConnectionWorker = command.ConnectionWorker;
 
-            result.Result = SerializerUtility.Instance().BinSerialize(resultValue);
+            if(successful)
+                result.Result = SerializerUtility.Instance().BinSerialize(resultValue);
+            else
+                result.Exception = SerializerUtility.Instance().BinSerialize(exc);
 
             return result;
         }

@@ -10,13 +10,18 @@ using System.Threading.Tasks;
 
 namespace Sword.CommandBus
 {
-    public class CommandBusClient
+    public class CommandBusClient:IDisposable
     {
         private ClientConnectionManager mgr;
         private string SessionID { get; set; }
         private bool started = false;
 
-        public void Start()
+        public CommandBusClient()
+        {
+            Start();
+        }
+
+        private void Start()
         {
             if (started)
                 return;
@@ -29,7 +34,7 @@ namespace Sword.CommandBus
             mgr.Connect();
         }
 
-        public void Stop()
+        private void Stop()
         {
             if (mgr != null)
                 mgr.Close();
@@ -48,7 +53,20 @@ namespace Sword.CommandBus
 
         public CommandResult WaitForResult()
         {
-            return mgr.Receive();
+            var commandResult=mgr.Receive();
+
+            if (!commandResult.Sucessful)
+            {
+                Exception exception = SerializerUtility.Instance().BinDeserialize<Exception>(commandResult.Exception);
+                throw exception;
+            }
+
+            return commandResult;
+        }
+
+        public void Dispose()
+        {
+            Stop();
         }
     }
 }

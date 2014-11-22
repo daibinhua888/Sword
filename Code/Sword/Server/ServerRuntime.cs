@@ -18,7 +18,7 @@ namespace Sword.Server
         internal static ConnectionMaster master;
         private static IncomingQueueRepository incomingQueueRepository = new IncomingQueueRepository();
         private static OutgoingQueueRepository outgoingQueueRepository = new OutgoingQueueRepository();
-        private static OfflineConnectionCleanWorker offlineConnectionCleanWorker = new OfflineConnectionCleanWorker();
+        private static OfflineConnectionCleanWorker offlineConnectionCleanWorker;
         private static PipeProcessorPool pipeProcessorPool;
 
         static ServerRuntime()
@@ -26,9 +26,13 @@ namespace Sword.Server
             ServiceRegistry.RegisterSwordServices();
         }
 
-        public static void Setup(int maxPoolSize)
+        private static bool _setupOk=false;
+        public static void Setup(int maxPoolSize, int timeoutSeconds)
         {
             pipeProcessorPool = new PipeProcessorPool(maxPoolSize);
+            offlineConnectionCleanWorker = new OfflineConnectionCleanWorker(TimeSpan.FromSeconds(timeoutSeconds));
+
+            _setupOk=true;
         }
 
         public static void Start(int port)
@@ -36,8 +40,8 @@ namespace Sword.Server
             if (master != null)
                 throw new Exception("已经Start了");
 
-            if (pipeProcessorPool == null)
-                Setup(10);
+            if (!_setupOk)
+                Setup(10, 30);
 
             master = new ConnectionMaster(port);
             master.Start();

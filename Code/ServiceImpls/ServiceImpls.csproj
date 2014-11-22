@@ -45,6 +45,8 @@
     <Compile Include="TestService.cs" />
     <Compile Include="ITest2.cs" />
     <Compile Include="TestService2.cs" />
+    <Compile Include="ITest3.cs" />
+    <Compile Include="TestService3.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sword\Sword.csproj">

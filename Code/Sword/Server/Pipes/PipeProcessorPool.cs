@@ -14,6 +14,7 @@ namespace Sword.Server.Pipes
 
         private BlockingCollection<PipeProcessor> idlePipeProcessors = new BlockingCollection<PipeProcessor>();
         private List<PipeProcessor> busyPipeProcessors = new List<PipeProcessor>();
+        private object lk4Swap = new object();
 
         public PipeProcessorPool(int count)
         {
@@ -33,18 +34,24 @@ namespace Sword.Server.Pipes
 
         public PipeProcessor PickOneIdle()
         {
-            var pipe = this.idlePipeProcessors.Take();
+            lock (lk4Swap)
+            {
+                var pipe = this.idlePipeProcessors.Take();
 
-            this.busyPipeProcessors.Add(pipe);
+                this.busyPipeProcessors.Add(pipe);
 
-            return pipe;
+                return pipe;
+            }
         }
 
         public void BackIntoPool(PipeProcessor pipeProcessor)
         {
-            this.busyPipeProcessors.Remove(pipeProcessor);
+            lock (lk4Swap)
+            {
+                this.busyPipeProcessors.Remove(pipeProcessor);
 
-            this.idlePipeProcessors.Add(pipeProcessor);
+                this.idlePipeProcessors.Add(pipeProcessor);
+            }
         }
     }
 }
