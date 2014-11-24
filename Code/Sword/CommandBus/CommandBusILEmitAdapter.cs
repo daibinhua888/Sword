@@ -49,7 +49,7 @@ namespace Sword.CommandBus
                 for (var i = 0; i < methods.Length; i++)
                 {
                     var paramTypes = GetParametersType(methods[i]);
-                    var methodBlfr = typeBldr.DefineMethod(methods[i].Name, MethodAttributes.Public | MethodAttributes.Virtual, CallingConventions.Standard, methods[i].ReturnType, paramTypes.Select(f=>f.ParameterType).ToArray());
+                    var methodBlfr = typeBldr.DefineMethod(methods[i].Name, MethodAttributes.Public | MethodAttributes.Virtual, CallingConventions.Standard, methods[i].ReturnType, paramTypes.Select(f => f.ParameterType).ToArray());
 
                     il = methodBlfr.GetILGenerator();
 
@@ -57,8 +57,6 @@ namespace Sword.CommandBus
                     var requestLocal = il.DeclareLocal(typeof(Command));
                     var argsLocal = il.DeclareLocal(typeof(Dictionary<string, object>));
                     var responseLocal = il.DeclareLocal(typeof(CommandResult));
-                    var response_Result_Bytes = il.DeclareLocal(typeof(byte[]));
-                    var responseResultCasted = il.DeclareLocal(methods[i].ReturnType);
                     var value2Object = il.DeclareLocal(typeof(object));
 
                     #region Command requestLocal=new Command();
@@ -145,8 +143,12 @@ namespace Sword.CommandBus
                     il.Emit(OpCodes.Stloc, responseLocal);
                     #endregion
 
+
                     if (methods[i].ReturnType != typeof(void))
                     {
+                        var response_Result_Bytes = il.DeclareLocal(typeof(byte[]));
+                        var responseResultCasted = il.DeclareLocal(methods[i].ReturnType);
+
                         #region responseResult=responseLocal.Result/Successful/Exception;
                         mi = typeof(CommandResult).GetMethod("get_Result");
                         il.Emit(OpCodes.Ldloc, responseLocal);
@@ -166,14 +168,12 @@ namespace Sword.CommandBus
                         #endregion
                     }
 
-                    if (methods[i].ReturnType == typeof(void))
-                        il.Emit(OpCodes.Pop);
                     il.Emit(OpCodes.Ret);
                 }
 
                 proxyType=typeBldr.CreateType();
 
-                //asmBuilder.Save(proxyDllName);
+                asmBuilder.Save(proxyDllName);
 
                 createdProxies[typeof(T)] = proxyType;
             }

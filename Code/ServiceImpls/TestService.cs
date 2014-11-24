@@ -19,7 +19,7 @@ namespace ServiceImpls
             dto.P2 = "111111111";
             dto.P3 = DateTime.Now;
 
-            throw new Exception("fffffffffff");
+            //throw new Exception("fffffffffff");
 
             return dto;
         }

@@ -24,7 +24,7 @@ namespace Sword.Server.Pipes
             Task.Factory.StartNew(() =>
             {
                 InnerProcessLogic();
-            });
+            }, TaskCreationOptions.LongRunning);
         }
 
         public void GiveTask(Command task)
@@ -63,10 +63,18 @@ namespace Sword.Server.Pipes
 
             bool successful = false;
             Exception exc=null;
+            bool noReturnValue = false;
             object resultValue = null;
+
+            if (methodDescriptor.MethodInfo.ReturnType.Equals(typeof(void)))
+                noReturnValue = true;
+
             try
             {
-                resultValue = methodDescriptor.MethodInfo.Invoke(serviceInstance, parameters.ToArray());
+                if (noReturnValue)
+                    methodDescriptor.MethodInfo.Invoke(serviceInstance, parameters.ToArray());
+                else
+                    resultValue = methodDescriptor.MethodInfo.Invoke(serviceInstance, parameters.ToArray());
                 successful = true;
             }
             catch(Exception ex)
@@ -80,10 +88,17 @@ namespace Sword.Server.Pipes
             result.Sucessful = successful;
             result.ConnectionWorker = command.ConnectionWorker;
 
-            if(successful)
-                result.Result = SerializerUtility.Instance().BinSerialize(resultValue);
+            if (successful)
+            {
+                if (!noReturnValue)
+                    result.Result = SerializerUtility.Instance().BinSerialize(resultValue);
+            }
             else
+            {
                 result.Exception = SerializerUtility.Instance().BinSerialize(exc);
+            }
+
+            result.ConnectionWorker.LastActiveTime = DateTime.Now; //reset timeout
 
             return result;
         }
