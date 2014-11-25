@@ -34,6 +34,7 @@ namespace Client
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine("server exception: ");
                         Console.WriteLine(ex.Message);
                     }
                 }
