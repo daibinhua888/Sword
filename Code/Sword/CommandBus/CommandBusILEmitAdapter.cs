@@ -49,7 +49,14 @@ namespace Sword.CommandBus
                 for (var i = 0; i < methods.Length; i++)
                 {
                     var paramTypes = GetParametersType(methods[i]);
-                    var methodBlfr = typeBldr.DefineMethod(methods[i].Name, MethodAttributes.Public | MethodAttributes.Virtual, CallingConventions.Standard, methods[i].ReturnType, paramTypes.Select(f => f.ParameterType).ToArray());
+
+                    Type[] parameterTypes = null;
+                    if (paramTypes != null && paramTypes.Length > 0)
+                        parameterTypes = paramTypes.Select(f => f.ParameterType).ToArray();
+                    else
+                        parameterTypes = new Type[] { };
+
+                    var methodBlfr = typeBldr.DefineMethod(methods[i].Name, MethodAttributes.Public | MethodAttributes.Virtual, CallingConventions.Standard, methods[i].ReturnType, parameterTypes);
 
                     il = methodBlfr.GetILGenerator();
 

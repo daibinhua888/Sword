@@ -23,5 +23,11 @@ namespace ServiceImpls
 
             return dto;
         }
+
+
+        public void Test2()
+        {
+            Console.Write(".");
+        }
     }
 }

@@ -29,8 +29,10 @@ namespace Client
                     try
                     {
                         var result = proxy.Proxy.Test1("fff");
+                        proxy.Proxy.Test2();
 
                         Console.WriteLine(i + "====" + result.P1);
+                        Console.WriteLine(i + "====");
                     }
                     catch (Exception ex)
                     {
@@ -39,6 +41,8 @@ namespace Client
                     }
                 }
             }
+            Console.WriteLine("ok");
+            Console.ReadKey();
 
             using (var proxy = new Sword<ITest2>())
             {

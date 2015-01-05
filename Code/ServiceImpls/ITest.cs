@@ -9,5 +9,6 @@ namespace ServiceImpls
     public interface ITest
     {
         TestResultDTO Test1(string input);
+        void Test2();
     }
 }
