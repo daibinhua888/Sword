@@ -20,6 +20,7 @@ namespace Sword.Server
         private static OutgoingQueueRepository outgoingQueueRepository = new OutgoingQueueRepository();
         private static OfflineConnectionCleanWorker offlineConnectionCleanWorker;
         private static PipeProcessorPool pipeProcessorPool;
+        private static int CleanTick = 200;
 
         static ServerRuntime()
         {
@@ -70,6 +71,8 @@ namespace Sword.Server
                 offlineConnectionCleanWorker.DetectAndTagInactiveConnectionWorkers();
 
                 offlineConnectionCleanWorker.CleanTaggedConnectionWorkers();
+
+                Thread.Sleep(CleanTick);
             }
         }
 

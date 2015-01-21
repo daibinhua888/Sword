@@ -31,12 +31,23 @@ namespace Sword.Server.PipeSelectors
 
             foreach (var item in lst)
             {
-                var types = item.GetTypes().ToList().Where(w => {
-                    var attrs=w.GetCustomAttributes<SwordServiceAttribute>();
-                    if (attrs != null && attrs.Count() > 0)
-                        return true;
-                    return false;
-                }).ToList();
+                List<Type> types=null;
+                try
+                {
+                    types = item.GetTypes().ToList().Where(w =>
+                    {
+                        var attrs = w.GetCustomAttributes<SwordServiceAttribute>();
+                        if (attrs != null && attrs.Count() > 0)
+                            return true;
+                        return false;
+                    }).ToList();
+                }
+                catch(Exception ex)
+                { 
+                }
+
+                if (types == null)
+                    continue;
 
                 types.ForEach(serviceType => {
 

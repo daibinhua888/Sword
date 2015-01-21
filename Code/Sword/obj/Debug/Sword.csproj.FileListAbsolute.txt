@@ -8,6 +8,5 @@ C:\Users\Administrator\Documents\GitHub\sword\Code\Sword\obj\Debug\Sword.dll
 C:\Users\Administrator\Documents\GitHub\sword\Code\Sword\obj\Debug\Sword.pdb
 C:\Users\Aaron\Documents\GitHub\sword\Code\Sword\bin\Debug\Sword.dll
 C:\Users\Aaron\Documents\GitHub\sword\Code\Sword\bin\Debug\Sword.pdb
-C:\Users\Aaron\Documents\GitHub\sword\Code\Sword\obj\Debug\Sword.csprojResolveAssemblyReference.cache
 C:\Users\Aaron\Documents\GitHub\sword\Code\Sword\obj\Debug\Sword.dll
 C:\Users\Aaron\Documents\GitHub\sword\Code\Sword\obj\Debug\Sword.pdb
